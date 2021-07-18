@@ -1,0 +1,22 @@
+{
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --mode dev",
+    "test": "vite --mode test",
+    "build": "vite build --mode prod",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "sass": "^1.35.2"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^1.2.5",
+    "@vue/compiler-sfc": "^3.0.5",
+    "axios": "^0.21.1",
+    "element-plus": "^1.0.2-beta.55",
+    "vite": "^2.4.2",
+    "vue-router": "^4.0.10",
+    "vuex": "^4.0.2",
+    "vue": "^3.0.5"
+  }
+}
