@@ -5,6 +5,10 @@
 <script >
 export default {
   name: "app",
+  mounted() {
+    this.$storage.setItem("name", "niuniu");
+    this.$storage.clearItem("name");
+  },
 };
 </script>
 
