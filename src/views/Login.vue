@@ -1,17 +1,24 @@
 <template>
   <div class="login-wrapper">
     <div class="modal">
-      <el-form>
+      <el-form
+        ref="userForm"
+        :model="user"
+        status-icon
+        :rules="rules"
+      >
         <div class="title">火星</div>
-        <el-form-item>
+        <el-form-item prop="userName">
           <el-input
             type="text"
+            v-model="user.userName"
             prefix-icon="el-icon-user"
           />
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="userPwd">
           <el-input
             type="password"
+            v-model="user.userPwd"
             prefix-icon="el-icon-view"
           />
         </el-form-item>
@@ -19,6 +26,7 @@
           <el-button
             type="primary"
             class="btn-login"
+            @click="login"
           >登录</el-button>
         </el-form-item>
       </el-form>
@@ -29,8 +37,41 @@
 <script>
 export default {
   name: "login",
+  data() {
+    return {
+      user: { userName: "", userPwd: "" },
+      rules: {
+        userName: [
+          {
+            required: true,
+            message: "请输入用户名",
+            trigger: "blur",
+          },
+        ],
+        userPwd: [
+          {
+            required: true,
+            message: "请输入密码",
+            trigger: "blur",
+          },
+        ],
+      },
+    };
+  },
   mounted() {},
-  methods: {},
+  methods: {
+    login() {
+      this.$refs.userForm.validate((valid) => {
+        if (valid) {
+          this.$api.login(this.user).then((res) => {
+            console.log(res);
+            this.$store.commit("saveUserInfo", res);
+            this.$router.push("/welcome");
+          });
+        }
+      });
+    },
+  },
 };
 </script>
 
